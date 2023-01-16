@@ -3,7 +3,6 @@ package net.javaguides.springboot.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 import net.javaguides.springboot.dto.PostDto;
-import net.javaguides.springboot.entity.Post;
 import net.javaguides.springboot.mapper.PostMapperStruct;
 import net.javaguides.springboot.repository.PostRepository;
 import net.javaguides.springboot.service.PostService;
@@ -23,7 +22,7 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public List<PostDto> findAllPosts() {
-    List<Post> posts = postRepository.findAll();
-    return posts.stream().map(postMapperStruct::mapToPostDto).collect(Collectors.toList());
+    return postRepository.findAll().stream()
+        .map(postMapperStruct::mapToPostDto).collect(Collectors.toList());
   }
 }
