@@ -5,7 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
@@ -25,7 +24,7 @@ public class Post {
   @Column(nullable = false)
   private String title;
   private String url;
-  @Column(nullable = false) @Lob
+  @Column(nullable = false)
   private String content;
   private String shortDescription;
   @CreationTimestamp
