@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class PostServiceImpl implements PostService {
 
-  private PostRepository postRepository;
-  private PostMapper postMapper;
+  private final PostRepository postRepository;
+  private final PostMapper postMapper;
   public PostServiceImpl(PostRepository postRepository,
                          PostMapper postMapper) {
     this.postRepository = postRepository;
@@ -22,5 +22,10 @@ public class PostServiceImpl implements PostService {
   public List<PostDto> findAllPosts() {
     return postRepository.findAll().stream()
         .map(postMapper::mapToPostDto).toList();
+  }
+
+  @Override
+  public void create_post(PostDto postDto) {
+    postRepository.save(postMapper.mapToPost(postDto));
   }
 }
