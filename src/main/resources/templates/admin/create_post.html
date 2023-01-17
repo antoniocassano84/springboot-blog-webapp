@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <div th:replace="~{admin/header :: header}"></div>
+  <body>
+    <div th:replace="~{admin/header :: navbar}"></div>
+      <br/><br/>
+      <div class="container">
+        <div class="row col-md-8 offset-md-2">
+          <div class="card">
+            <div class="card-header">
+              <h2 class="text-center">Create Post</h2>
+            </div>
+            <div class="card-body">
+              <form role="form" method="post" th:action="@{/admin/posts}" th:object="${post}">
+                <div class="mb-3">
+                  <label class="form-label">Title</label>
+                  <input type="text" class="form-control" id="title" name="title"
+                         th:field="*{title}" placeholder="Enter post title" />
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Short Description</label>
+                  <textarea  class="form-control" id="shortDescription" name="shortDescription"
+                             th:field="*{shortDescription}"
+                             placeholder="Enter post short description">
+                  </textarea>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label">Content</label>
+                  <textarea class="form-control" id="content" name="content" th:field="*{content}"
+                            placeholder="Enter post content">
+                  </textarea>
+                </div>
+                <button type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    <br/><br/>
+    <div th:replace="~{admin/footer :: footer}"></div>
+  </body>
+</html>
