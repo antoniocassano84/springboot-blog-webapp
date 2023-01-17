@@ -23,4 +23,9 @@ public class PostServiceImpl implements PostService {
     return postRepository.findAll().stream()
         .map(postMapper::mapToPostDto).toList();
   }
+
+  @Override
+  public void create_post(PostDto postDto) {
+    postRepository.save(postMapper.mapToPost(postDto));
+  }
 }

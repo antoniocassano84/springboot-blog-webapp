@@ -6,6 +6,8 @@ import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PostController {
@@ -27,5 +29,17 @@ public class PostController {
   public String newPostForm(Model model) {
     model.addAttribute("post", new PostDto());
     return "/admin/create_post";
+  }
+
+  @PostMapping("/admin/posts")
+  public String createPost(@ModelAttribute() PostDto postDto) {
+    postDto.setUrl(getUrl(postDto.getTitle()));
+    postService.create_post(postDto);
+    return "redirect:/admin/posts";
+  }
+
+  private static String getUrl(String postTitle) {
+    return postTitle.trim().toLowerCase().replaceAll("\\s+", "-")
+        .replaceAll("[^A-Za-z0-9]", "-");
   }
 }
