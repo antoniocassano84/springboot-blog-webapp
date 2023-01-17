@@ -16,6 +16,9 @@
                   <label class="form-label">Title</label>
                   <input type="text" class="form-control" id="title" name="title"
                          th:field="*{title}" placeholder="Enter post title" />
+                  <p th:if="${#fields.hasErrors('title')}" class="text-danger" th:errors="*{title}">
+                    Errors
+                  </p>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Short Description</label>
@@ -23,12 +26,20 @@
                              th:field="*{shortDescription}"
                              placeholder="Enter post short description">
                   </textarea>
+                  <p th:if="${#fields.hasErrors('shortDescription')}" class="text-danger"
+                     th:errors="*{shortDescription}">
+                    Errors
+                  </p>
                 </div>
                 <div class="mb-3">
                   <label class="form-label">Content</label>
                   <textarea class="form-control" id="content" name="content" th:field="*{content}"
                             placeholder="Enter post content">
                   </textarea>
+                  <p th:if="${#fields.hasErrors('content')}" class="text-danger"
+                     th:errors="*{content}">
+                    Errors
+                  </p>
                 </div>
                 <button type="submit">Submit</button>
               </form>
@@ -38,5 +49,20 @@
       </div>
     <br/><br/>
     <div th:replace="~{admin/footer :: footer}"></div>
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+            integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <script>
+                        ClassicEditor
+                                .create( document.querySelector( '#content' ) )
+                                .then( editor => {
+                                        console.log( editor );
+                                } )
+                                .catch( error => {
+                                        console.error( error );
+                                } );
+                </script>
   </body>
 </html>

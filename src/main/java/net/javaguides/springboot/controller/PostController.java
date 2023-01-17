@@ -1,10 +1,12 @@
 package net.javaguides.springboot.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import net.javaguides.springboot.dto.PostDto;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +34,12 @@ public class PostController {
   }
 
   @PostMapping("/admin/posts")
-  public String createPost(@ModelAttribute() PostDto postDto) {
+  public String createPost(@ModelAttribute("post") @Valid PostDto postDto,
+                            BindingResult bindingResult, Model model) {
+    if(bindingResult.hasErrors()) {
+      model.addAttribute("post", postDto);
+      return "/admin/create_post";
+    }
     postDto.setUrl(getUrl(postDto.getTitle()));
     postService.create_post(postDto);
     return "redirect:/admin/posts";
