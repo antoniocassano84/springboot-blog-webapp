@@ -22,7 +22,11 @@
           <td th:text="${post.title}">Post Title 1</td>
           <td th:text="${post.shortDescription}">Post Desc 1</td>
           <td th:text="${post.createdOn}">01/01/2001</td>
-          <td></td>
+          <td>
+            <a class="btn btn-primary" th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}">
+              Edit
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
