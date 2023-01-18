@@ -22,8 +22,7 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public List<PostDto> findAllPosts() {
-    return postRepository.findAll().stream()
-        .map(postMapper::mapToPostDto).toList();
+    return postRepository.findAllByOrderByIdAsc().stream().map(postMapper::mapToPostDto).toList();
   }
 
   @Override
