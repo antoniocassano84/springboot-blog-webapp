@@ -8,4 +8,8 @@ public interface PostService {
   List<PostDto> findAllPosts();
   void create_post(PostDto postDto);
 
+  PostDto findPostById(Long postId);
+
+  void update_post(PostDto postDto);
+
 }

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
@@ -42,6 +43,26 @@ public class PostController {
     }
     postDto.setUrl(getUrl(postDto.getTitle()));
     postService.create_post(postDto);
+    return "redirect:/admin/posts";
+  }
+
+  @GetMapping("/admin/posts/{postId}/edit")
+  public String editPostForm(@PathVariable("postId") Long postId, Model model) {
+    model.addAttribute("post", postService.findPostById(postId));
+    return "/admin/edit_post";
+  }
+
+  @PostMapping("/admin/posts/{postId}")
+  public String updatePost(@PathVariable("postId") Long postId,
+                           @Valid @ModelAttribute("post") PostDto postDto,
+                            BindingResult bindingResult,
+                            Model model) {
+    if(bindingResult.hasErrors()) {
+      model.addAttribute("post", postDto);
+      return "/admin/edit_post";
+    }
+    postDto.setId(postId);
+    postService.update_post(postDto);
     return "redirect:/admin/posts";
   }
 
