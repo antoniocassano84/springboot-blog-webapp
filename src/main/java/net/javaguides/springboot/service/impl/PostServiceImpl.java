@@ -1,7 +1,9 @@
 package net.javaguides.springboot.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import net.javaguides.springboot.dto.PostDto;
+import net.javaguides.springboot.entity.Post;
 import net.javaguides.springboot.mapper.PostMapper;
 import net.javaguides.springboot.repository.PostRepository;
 import net.javaguides.springboot.service.PostService;
@@ -27,5 +29,10 @@ public class PostServiceImpl implements PostService {
   @Override
   public void create_post(PostDto postDto) {
     postRepository.save(postMapper.mapToPost(postDto));
+  }
+
+  @Override
+  public PostDto findPostById(Long postId) {
+    return postRepository.findById(postId).map(postMapper::mapToPostDto).orElse(null);
   }
 }
