@@ -10,4 +10,6 @@ public interface PostService {
 
   PostDto findPostById(Long postId);
 
+  void update_post(PostDto postDto);
+
 }

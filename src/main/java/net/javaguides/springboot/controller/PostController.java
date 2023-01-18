@@ -52,6 +52,20 @@ public class PostController {
     return "/admin/edit_post";
   }
 
+  @PostMapping("/admin/posts/{postId}")
+  public String updatePost(@PathVariable("postId") Long postId,
+                           @Valid @ModelAttribute("post") PostDto postDto,
+                            BindingResult bindingResult,
+                            Model model) {
+    if(bindingResult.hasErrors()) {
+      model.addAttribute("post", postDto);
+      return "/admin/edit_post";
+    }
+    postDto.setId(postId);
+    postService.update_post(postDto);
+    return "redirect:/admin/posts";
+  }
+
   private static String getUrl(String postTitle) {
     return postTitle.trim().toLowerCase().replaceAll("\\s+", "-")
         .replaceAll("[^A-Za-z0-9]", "-");
