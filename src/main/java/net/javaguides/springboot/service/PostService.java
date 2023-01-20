@@ -10,6 +10,8 @@ public interface PostService {
 
   PostDto findPostById(Long postId);
 
+  PostDto findPostByUrl(String postUrl);
+
   void update_post(PostDto postDto);
 
   void deletePost(Long postId);

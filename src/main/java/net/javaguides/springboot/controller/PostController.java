@@ -73,6 +73,12 @@ public class PostController {
     return REDIRECT_ADMIN_POSTS;
   }
 
+  @GetMapping("/admin/posts/{postUrl}/view")
+  public String viewPost(@PathVariable("postUrl") String postUrl, Model model) {
+    model.addAttribute("post", postService.findPostByUrl(postUrl));
+    return "/admin/view_post";
+  }
+
   private static String getUrl(String postTitle) {
     return postTitle.trim().toLowerCase().replaceAll("\\s+", "-")
         .replaceAll("[^A-Za-z0-9]", "-");
