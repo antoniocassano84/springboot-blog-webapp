@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class PostController {
 
+  public static final String REDIRECT_ADMIN_POSTS = "redirect:/admin/posts";
   private final PostService postService;
 
   public PostController(PostService postService) {
@@ -43,7 +44,7 @@ public class PostController {
     }
     postDto.setUrl(getUrl(postDto.getTitle()));
     postService.create_post(postDto);
-    return "redirect:/admin/posts";
+    return REDIRECT_ADMIN_POSTS;
   }
 
   @GetMapping("/admin/posts/{postId}/edit")
@@ -63,13 +64,13 @@ public class PostController {
     }
     postDto.setId(postId);
     postService.update_post(postDto);
-    return "redirect:/admin/posts";
+    return REDIRECT_ADMIN_POSTS;
   }
 
   @GetMapping("/admin/posts/{postId}/delete")
   public String deletePost(@PathVariable("postId") Long postId) {
     postService.deletePost(postId);
-    return "redirect:/admin/posts";
+    return REDIRECT_ADMIN_POSTS;
   }
 
   private static String getUrl(String postTitle) {
