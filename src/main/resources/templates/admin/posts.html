@@ -26,6 +26,9 @@
             <a class="btn btn-primary" th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}">
               Edit
             </a>
+            <a class="btn btn-danger" th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}">
+              Delete
+            </a>
           </td>
         </tr>
       </tbody>
