@@ -29,6 +29,9 @@
             <a class="btn btn-danger" th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}">
               Delete
             </a>
+            <a class="btn btn-info" th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}">
+              View
+            </a>
           </td>
         </tr>
       </tbody>
