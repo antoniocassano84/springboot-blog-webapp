@@ -1,7 +1,6 @@
 package net.javaguides.springboot.controller;
 
 import jakarta.validation.Valid;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.PostDto;
 import net.javaguides.springboot.service.PostService;
