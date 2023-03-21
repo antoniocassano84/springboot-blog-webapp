@@ -21,7 +21,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void create_post(PostDto postDto) {
+  public void createPost(PostDto postDto) {
     postRepository.save(postMapper.mapToPost(postDto));
   }
 
@@ -31,7 +31,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void update_post(PostDto postDto) {
+  public void updatePost(PostDto postDto) {
     postRepository.save(postMapper.mapToPost(postDto));
   }
 

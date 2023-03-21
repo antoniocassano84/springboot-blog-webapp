@@ -6,11 +6,11 @@ import net.javaguides.springboot.dto.PostDto;
 public interface PostService {
 
   List<PostDto> findAllPosts();
-  void create_post(PostDto postDto);
+  void createPost(PostDto postDto);
 
   PostDto findPostById(Long postId);
 
-  void update_post(PostDto postDto);
+  void updatePost(PostDto postDto);
 
   void deletePost(Long postId);
 

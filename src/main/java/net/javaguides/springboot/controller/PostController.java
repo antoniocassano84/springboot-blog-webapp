@@ -53,7 +53,7 @@ public class PostController {
       return ADMIN_CREATE_POST;
     }
     postDto.setUrl(getUrl(postDto.getTitle()));
-    postService.create_post(postDto);
+    postService.createPost(postDto);
     return REDIRECT_ADMIN_POSTS;
   }
 
@@ -73,7 +73,7 @@ public class PostController {
       return ADMIN_EDIT_POST;
     }
     postDto.setId(postId);
-    postService.update_post(postDto);
+    postService.updatePost(postDto);
     return REDIRECT_ADMIN_POSTS;
   }
 
