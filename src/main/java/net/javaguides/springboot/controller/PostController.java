@@ -2,6 +2,7 @@ package net.javaguides.springboot.controller;
 
 import jakarta.validation.Valid;
 import java.util.List;
+import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.PostDto;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
+@AllArgsConstructor
 public class PostController {
 
   public static final String ADMIN = "/admin";
@@ -27,14 +29,9 @@ public class PostController {
 
   private final PostService postService;
 
-  public PostController(PostService postService) {
-    this.postService = postService;
-  }
-
   @GetMapping(ADMIN_POSTS)
   public String posts(Model model) {
-    List<PostDto> posts = postService.findAllPosts();
-    model.addAttribute("posts", posts);
+    model.addAttribute("posts", postService.findAllPosts());
     return ADMIN_POSTS;
   }
 
