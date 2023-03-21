@@ -1,7 +1,9 @@
 package net.javaguides.springboot.controller;
 
 import jakarta.validation.Valid;
+import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.javaguides.springboot.dto.PostDto;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 @AllArgsConstructor
+@Slf4j
 public class PostController {
 
   public static final String ADMIN = "/admin";
@@ -30,7 +33,9 @@ public class PostController {
 
   @GetMapping(ADMIN_POSTS)
   public String posts(Model model) {
-    model.addAttribute("posts", postService.findAllPosts());
+    List<PostDto> posts = postService.findAllPosts();
+    model.addAttribute("posts", posts);
+    posts.forEach(p -> log.info("# in posts() -> "+ p));
     return ADMIN_POSTS;
   }
 
