@@ -23,10 +23,12 @@
           <td th:text="${post.shortDescription}">Post Desc 1</td>
           <td th:text="${post.createdOn}">01/01/2001</td>
           <td>
-            <a class="btn btn-primary" th:href="@{/admin/posts/{postId}/edit(postId=${post.id})}">
+            <a class="btn btn-primary"
+               th:href="@{${@postController.ADMIN_POST_EDIT}(postId=${post.id})}">
               Edit
             </a>
-            <a class="btn btn-danger" th:href="@{/admin/posts/{postId}/delete(postId=${post.id})}">
+            <a class="btn btn-danger"
+               th:href="@{${@postController.ADMIN_POST_DELETE}(postId=${post.id})}">
               Delete
             </a>
           </td>
