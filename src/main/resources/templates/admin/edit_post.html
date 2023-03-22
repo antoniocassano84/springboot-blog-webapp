@@ -11,8 +11,8 @@
         <h2 class="text-center">Edit Post</h2>
       </div>
       <div class="card-body">
-        <form role="form" method="post" th:action="@{/admin/posts/{postId}(postId=${post.id})}"
-              th:object="${post}">
+        <form role="form" method="post" th:object="${post}"
+              th:action="@{${@postController.ADMIN_POST_ID}(postId=${post.id})}">
           <input type="hidden" th:field="*{url}">
           <input type="hidden" th:field="*{createdOn}">
           <div class="mb-3">
