@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{blog/header :: header}"></div>
 <body>
-<h1>view posts</h1>
+<div th:replace="~{blog/header :: navbar}"></div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div th:each="post : ${posts}">
+                <div class="card">
+                    <div class="card-header">
+                        <h3><a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                        th:text="${post.title}">
+                            Title
+                        </a>
+                        </h3>
+                        <div><strong th:text="${#temporals.format(post.createdOn, 'dd MMM yyyy')}"></strong></div>
+                    </div>
+                    <div class="card-body">
+                        <span th:utext="${post.shortDescription}"></span>
+                        <a th:href="@{/post/{postUrl}(postUrl=${post.url})}">Read more</a>
+                    </div>
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+
+        </div>
+    </div>
+</div>
+<br/><br/>
+<div th:replace="~{blog/footer :: footer}"></div>
 </body>
 </html>
