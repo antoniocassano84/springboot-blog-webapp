@@ -10,7 +10,7 @@
             <div th:each="post : ${posts}">
                 <div class="card">
                     <div class="card-header">
-                        <h3><a th:href="@{/post/{postUrl}(postUrl=${post.url})}"
+                        <h3><a th:href="@{${@blogController.POST_URL}(postUrl=${post.url})}"
                         th:text="${post.title}">
                             Title
                         </a>

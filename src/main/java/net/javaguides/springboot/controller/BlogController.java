@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class BlogController {
 
     public static final String BLOG_VIEW_POSTS = "blog/view_posts";
+    public static final String POST_URL = "/post/{postUrl}";
+
     private final PostService postService;
 
     @GetMapping("/")
