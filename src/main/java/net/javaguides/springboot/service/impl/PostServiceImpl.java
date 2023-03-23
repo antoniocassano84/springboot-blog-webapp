@@ -7,6 +7,7 @@ import net.javaguides.springboot.mapper.PostMapper;
 import net.javaguides.springboot.repository.PostRepository;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @AllArgsConstructor
@@ -28,6 +29,12 @@ public class PostServiceImpl implements PostService {
   @Override
   public PostDto findPostById(Long postId) {
     return postRepository.findById(postId).map(postMapper::mapToPostDto).orElse(null);
+  }
+
+  @Override
+  @Transactional
+  public PostDto findPostByUrl(String postUrl) {
+    return postRepository.findByUrl(postUrl).map(postMapper::mapToPostDto).orElse(null);
   }
 
   @Override
