@@ -1,24 +1,19 @@
 package net.javaguides.springboot.service.impl;
 
 import java.util.List;
-import java.util.Optional;
+import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.PostDto;
-import net.javaguides.springboot.entity.Post;
 import net.javaguides.springboot.mapper.PostMapper;
 import net.javaguides.springboot.repository.PostRepository;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class PostServiceImpl implements PostService {
 
   private final PostRepository postRepository;
   private final PostMapper postMapper;
-  public PostServiceImpl(PostRepository postRepository,
-                         PostMapper postMapper) {
-    this.postRepository = postRepository;
-    this.postMapper = postMapper;
-  }
 
   @Override
   public List<PostDto> findAllPosts() {
@@ -26,7 +21,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void create_post(PostDto postDto) {
+  public void createPost(PostDto postDto) {
     postRepository.save(postMapper.mapToPost(postDto));
   }
 
@@ -41,7 +36,7 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
-  public void update_post(PostDto postDto) {
+  public void updatePost(PostDto postDto) {
     postRepository.save(postMapper.mapToPost(postDto));
   }
 
