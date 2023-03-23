@@ -31,7 +31,8 @@
                th:href="@{${@postController.ADMIN_POST_DELETE}(postId=${post.id})}">
               Delete
             </a>
-            <a class="btn btn-info" th:href="@{/admin/posts/{postUrl}/view(postUrl=${post.url})}">
+            <a class="btn btn-info"
+               th:href="@{${@postController.ADMIN_VIEW_POST}(postUrl=${post.url})}">
               View
             </a>
           </td>

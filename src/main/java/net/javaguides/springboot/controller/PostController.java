@@ -28,6 +28,7 @@ public class PostController {
   public static final String ADMIN_EDIT_POST = ADMIN + "/edit_post";
   public static final String ADMIN_POST_ID = ADMIN_POSTS + "/{postId}";
   public static final String ADMIN_POST_DELETE = ADMIN_POSTS + "/{postId}/delete";
+  public static final String ADMIN_VIEW_POST = ADMIN_POSTS + "/{postUrl}/view";
 
   private final PostService postService;
 
@@ -83,9 +84,9 @@ public class PostController {
     return REDIRECT_ADMIN_POSTS;
   }
 
-  @GetMapping("/admin/posts/{postUrl}/view")
+  @GetMapping(ADMIN_VIEW_POST)
   public String viewPost(@PathVariable("postUrl") String postUrl, Model model) {
-    model.addAttribute("post", postService.findPostByUrl(postUrl));
+    //model.addAttribute("post", postService.findPostByUrl(postUrl));
     return "/admin/view_post";
   }
 
