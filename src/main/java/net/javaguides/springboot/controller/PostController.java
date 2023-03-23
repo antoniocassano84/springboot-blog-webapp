@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @AllArgsConstructor
@@ -30,6 +32,7 @@ public class PostController {
   public static final String ADMIN_POST_DELETE = ADMIN_POSTS + "/{postId}/delete";
   public static final String ADMIN_VIEW_POST = ADMIN_POSTS + "/{postUrl}/view";
   public static final String VIEW_POST = ADMIN + "/view_post";
+  public static final String ADMIN_POSTS_SEARCH = "/admin/posts/search";
 
   private final PostService postService;
 
@@ -89,6 +92,12 @@ public class PostController {
   public String viewPost(@PathVariable("postUrl") String postUrl, Model model) {
     model.addAttribute("post", postService.findPostByUrl(postUrl));
     return VIEW_POST;
+  }
+
+  @GetMapping(ADMIN_POSTS_SEARCH)
+  public String searchPosts(@RequestParam(value="query") String query, Model model) {
+    model.addAttribute("posts", postService.searchPosts(query));
+    return ADMIN_POSTS;
   }
 
   private static String getUrl(String postTitle) {

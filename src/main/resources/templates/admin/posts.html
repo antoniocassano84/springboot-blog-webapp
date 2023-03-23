@@ -8,6 +8,21 @@
     <div class="row">
       <h1>List Blog Posts</h1>
     </div>
+    <div class="row">
+      <div class="col-md-5">
+        <div class="form-group">
+          <form class="form-inline" th:action="@{${@postController.ADMIN_POSTS_SEARCH}}">
+            <div class="input-group">
+              <input type="text" class="form-control" name="query" />
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Search</button>
+              </span>
+            </div>
+          </form>
+          <br />
+        </div>
+      </div>
+    </div>
     <table class="table table-striped table-hover table-bordered">
       <thead class="table-dark">
         <th style="width:10%">#</th>
@@ -21,7 +36,7 @@
           <td th:text="${postStat.count}">1</td>
           <td th:text="${post.title}">Post Title 1</td>
           <td th:text="${post.shortDescription}">Post Desc 1</td>
-          <td th:text="${post.createdOn}">01/01/2001</td>
+          <td th:text="${#temporals.format(post.createdOn, 'dd MMM yyyy')}">01 Jan 2001</td>
           <td>
             <a class="btn btn-primary"
                th:href="@{${@postController.ADMIN_POST_EDIT}(postId=${post.id})}">
