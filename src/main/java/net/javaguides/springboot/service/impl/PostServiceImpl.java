@@ -46,4 +46,10 @@ public class PostServiceImpl implements PostService {
   public void deletePost(Long postId) {
     postRepository.deleteById(postId);
   }
+
+  @Override
+  @Transactional
+  public List<PostDto> searchPosts(String query) {
+    return postRepository.searchPosts(query).stream().map(postMapper::mapToPostDto).toList();
+  }
 }
