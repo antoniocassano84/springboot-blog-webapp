@@ -86,7 +86,7 @@ public class PostController {
 
   @GetMapping(ADMIN_VIEW_POST)
   public String viewPost(@PathVariable("postUrl") String postUrl, Model model) {
-    //model.addAttribute("post", postService.findPostByUrl(postUrl));
+    model.addAttribute("post", postService.findPostByUrl(postUrl));
     return "/admin/view_post";
   }
 
