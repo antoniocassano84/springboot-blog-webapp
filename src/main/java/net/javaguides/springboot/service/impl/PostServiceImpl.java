@@ -17,6 +17,7 @@ public class PostServiceImpl implements PostService {
   private final PostMapper postMapper;
 
   @Override
+  @Transactional
   public List<PostDto> findAllPosts() {
     return postRepository.findAllByOrderByIdAsc().stream().map(postMapper::mapToPostDto).toList();
   }

@@ -2,6 +2,8 @@ package net.javaguides.springboot.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
+import java.util.Set;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,5 +22,6 @@ public class PostDto {
   private String shortDescription;
   private LocalDateTime createdOn;
   private LocalDateTime updatedOn;
+  private Set<CommentDto> comments;
 
 }

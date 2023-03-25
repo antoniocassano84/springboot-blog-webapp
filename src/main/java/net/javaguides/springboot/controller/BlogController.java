@@ -1,6 +1,7 @@
 package net.javaguides.springboot.controller;
 
 import lombok.AllArgsConstructor;
+import net.javaguides.springboot.dto.CommentDto;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +28,7 @@ public class BlogController {
 
     @GetMapping(POST_URL)
     public String showPost(@PathVariable("postUrl") String postUrl, Model model) {
+        model.addAttribute("comment", new CommentDto());
         model.addAttribute("post", postService.findPostByUrl(postUrl));
         return BLOG_POST;
     }
