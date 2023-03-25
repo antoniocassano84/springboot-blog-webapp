@@ -14,9 +14,56 @@
                 <div th:utext="${post.content}">
                     Content
                 </div>
+            <hr/>
+            <div>
+                <h3>Comments:</h3>
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Leave a comment</h2>
+                    </div>
+                    <div class="card-body">
+                        <form role="form" method="post"
+                              th:action="@{/{postUrl}/comments(postUrl=${post.url})}"
+                              th:object="${comment}">
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <input class="form-control" id="name"
+                                           name="name" placeholder="Enter your name"
+                                           th:field="*{name}" type="text"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <input class="form-control" id="email"
+                                           name="email" placeholder="Enter your email"
+                                           th:field="*{email}" type="email"
+                                    />
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                <textarea class="form-control" id="content"
+                                          name="content" placeholder="Enter comment here"
+                                          rows="8" th:field="*{content}">
+                                    Comment content here
+                                </textarea>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <button class="btn btn-primary" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-3" >
-          <div th:replace="~{blog/search :: search}">Search</div>
+            <div th:replace="~{blog/search :: search}">Search</div>
         </div>
     </div>
 </div>
