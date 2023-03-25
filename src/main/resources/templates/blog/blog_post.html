@@ -17,6 +17,17 @@
             <hr/>
             <div>
                 <h3>Comments:</h3>
+                <div th:each="comment : ${post.comments}">
+                    <div>
+                        <p><b>Name:</b><strong th:text="${comment.name}">Name</strong></p>
+                        <p><b>Date:</b>
+                        <strong th:text="${#temporals.format(comment.createdOn, 'dd MMM yyyy')}">
+                                Name
+                            </strong>
+                        </p>
+                        <p th:text="${comment.content}">Content</p><br/>
+                    </div>
+                </div>
                 <div class="card">
                     <div class="card-header">
                         <h2>Leave a comment</h2>
