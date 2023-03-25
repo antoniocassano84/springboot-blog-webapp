@@ -23,7 +23,7 @@
                     </div>
                     <div class="card-body">
                         <form role="form" method="post"
-                              th:action="@{/{postUrl}/comments(postUrl=${post.url})}"
+                              th:action="@{${@commentController.POST_COMMENTS}(postUrl=${post.url})}"
                               th:object="${comment}">
                             <div class="row">
                                 <div class="col-md-5 mb-3">
