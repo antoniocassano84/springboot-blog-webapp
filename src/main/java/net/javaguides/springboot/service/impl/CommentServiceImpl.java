@@ -11,6 +11,7 @@ import net.javaguides.springboot.service.CommentService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,11 @@ public class CommentServiceImpl implements CommentService {
             comment.setPost(optPost.get());
             commentRepository.save(comment);
         }
+    }
+
+    @Override
+    public List<CommentDto> findALlComments() {
+        return commentRepository.findAll().stream()
+                .map(commentMapper::mapToCommentDto).toList();
     }
 }
