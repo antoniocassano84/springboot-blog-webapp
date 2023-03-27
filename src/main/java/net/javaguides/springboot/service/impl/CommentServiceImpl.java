@@ -37,4 +37,9 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.findAll().stream()
                 .map(commentMapper::mapToCommentDto).toList();
     }
+
+    @Override
+    public void deleteComment(Long commentId) {
+        commentRepository.deleteById(commentId);
+    }
 }

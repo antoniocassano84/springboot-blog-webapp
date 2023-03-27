@@ -23,7 +23,12 @@
           <td th:text="${comment.email}"></td>
           <td th:text="${comment.content}"></td>
           <td th:text="${#temporals.format(comment.createdOn, 'dd MMM yyyy')}"></td>
-          <td></td>
+          <td>
+            <a class="btn btn-danger"
+                th:href="@{${@postController.ADMIN_DELETE_COMMENTS}(commentId=${comment.id})}">
+              Delete
+            </a>
+          </td>
         </tr>
       </tbody>
     </table>
