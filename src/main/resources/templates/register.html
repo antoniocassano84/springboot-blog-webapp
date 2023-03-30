@@ -36,6 +36,11 @@
       <div class="card-header">
         <h2 class="text-center">Registration</h2>
       </div>
+      <div th:if="${param.success}">
+        <div class="alert alert-info">
+          You have successfully registered to our Blog app!
+        </div>
+      </div>
       <div class="card-body">
         <form method="post" role="form" th:action="@{/register/save}" th:object="${user}">
           <div class="form-group mb-3">
@@ -59,7 +64,7 @@
                    placeholder="Enter password" type="password" th:field="*{password}"/>
           </div>
           <div class="form-group mb-3">
-            <button type="submit" class="btn btn-primary">Register</button><br/>
+            <button type="submit" class="btn btn-primary">Register</button><br/><br/>
             <span> Already registered? <a th:href="@{/login}">Login Here</a></span>
           </div>
         </form>
