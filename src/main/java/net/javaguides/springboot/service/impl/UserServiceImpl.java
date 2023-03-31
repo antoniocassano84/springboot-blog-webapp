@@ -1,6 +1,7 @@
 package net.javaguides.springboot.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.RegistrationDto;
 import net.javaguides.springboot.entity.User;
@@ -24,5 +25,10 @@ public class UserServiceImpl implements UserService {
     user.setPassword(registrationDto.getPassword());
     user.setRoles(List.of(roleRepository.findByName("ROLE_GUEST")));
     userRepository.save(user);
+  }
+
+  @Override
+  public Optional<User> findByEmail(String email) {
+    return userRepository.findByEmail(email);
   }
 }
