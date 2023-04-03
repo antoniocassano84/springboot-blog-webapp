@@ -14,14 +14,17 @@ public class WebSpringSecurity {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf().disable()
-                .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers(new AntPathRequestMatcher("/resources/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
-                                .requestMatchers(new AntPathRequestMatcher("/admin/**"))
-                                .hasAnyRole("ADMIN", "GUEST")
-                )
-                .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/admin/posts")
-                        .loginProcessingUrl("/login").permitAll());
+            .authorizeHttpRequests(authorize ->
+                authorize.requestMatchers(new AntPathRequestMatcher("/resources/**")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/admin/**"))
+                    .hasAnyRole("ADMIN", "GUEST")
+            )
+            .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/admin/posts")
+                .loginProcessingUrl("/login").permitAll())
+            .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .permitAll()
+            );
         return http.build();
     }
 }
