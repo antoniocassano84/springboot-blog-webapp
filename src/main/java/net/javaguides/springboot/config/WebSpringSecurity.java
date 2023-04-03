@@ -19,6 +19,8 @@ public class WebSpringSecurity {
                     .requestMatchers(new AntPathRequestMatcher("/register/**")).permitAll()
                     .requestMatchers(new AntPathRequestMatcher("/admin/**"))
                     .hasAnyRole("ADMIN", "GUEST")
+                    .requestMatchers(new AntPathRequestMatcher("/")).permitAll()
+                    .requestMatchers(new AntPathRequestMatcher("/post/**")).permitAll()
             )
             .formLogin(form -> form.loginPage("/login").defaultSuccessUrl("/admin/posts")
                 .loginProcessingUrl("/login").permitAll())
