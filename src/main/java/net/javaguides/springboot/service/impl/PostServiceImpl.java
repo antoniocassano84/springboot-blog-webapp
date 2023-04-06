@@ -30,6 +30,16 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  public List<PostDto> findPostsByUser() {
+    String email = Objects.requireNonNull(getCurrentUser()).getUsername();
+    return userRepository.findByEmail(email)
+            .map(user -> postRepository
+            .findPostsByUser(user.getId())
+            .stream().map(postMapper::mapToPostDto).toList())
+            .orElse(null);
+  }
+
+  @Override
   public void createPost(PostDto postDto) {
     savePost(postDto);
   }

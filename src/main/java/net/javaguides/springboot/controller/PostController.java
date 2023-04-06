@@ -44,7 +44,7 @@ public class PostController {
 
   @GetMapping(ADMIN_POSTS)
   public String posts(Model model) {
-    List<PostDto> posts = postService.findAllPosts();
+    List<PostDto> posts = postService.findPostsByUser();
     model.addAttribute("posts", posts);
     posts.forEach(p -> log.info("# in posts() -> "+ p));
     return ADMIN_POSTS;
