@@ -1,13 +1,19 @@
 package net.javaguides.springboot.service.impl;
 
 import java.util.List;
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import net.javaguides.springboot.dto.PostDto;
+import net.javaguides.springboot.entity.Post;
 import net.javaguides.springboot.mapper.PostMapper;
 import net.javaguides.springboot.repository.PostRepository;
+import net.javaguides.springboot.repository.UserRepository;
 import net.javaguides.springboot.service.PostService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static net.javaguides.springboot.util.SecurityUtils.*;
 
 @Service
 @AllArgsConstructor
@@ -15,6 +21,7 @@ public class PostServiceImpl implements PostService {
 
   private final PostRepository postRepository;
   private final PostMapper postMapper;
+  private final UserRepository userRepository;
 
   @Override
   @Transactional
@@ -23,8 +30,18 @@ public class PostServiceImpl implements PostService {
   }
 
   @Override
+  public List<PostDto> findPostsByUser() {
+    String email = Objects.requireNonNull(getCurrentUser()).getUsername();
+    return userRepository.findByEmail(email)
+            .map(user -> postRepository
+            .findPostsByUser(user.getId())
+            .stream().map(postMapper::mapToPostDto).toList())
+            .orElse(null);
+  }
+
+  @Override
   public void createPost(PostDto postDto) {
-    postRepository.save(postMapper.mapToPost(postDto));
+    savePost(postDto);
   }
 
   @Override
@@ -40,7 +57,14 @@ public class PostServiceImpl implements PostService {
 
   @Override
   public void updatePost(PostDto postDto) {
-    postRepository.save(postMapper.mapToPost(postDto));
+    savePost(postDto);
+  }
+
+  private void savePost(PostDto postDto) {
+    String email = Objects.requireNonNull(getCurrentUser()).getUsername();
+    Post post = postMapper.mapToPost(postDto);
+    userRepository.findByEmail(email).ifPresent(post::setCreatedBy);
+    postRepository.save(post);
   }
 
   @Override

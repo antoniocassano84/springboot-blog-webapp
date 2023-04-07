@@ -6,6 +6,7 @@ import net.javaguides.springboot.dto.PostDto;
 public interface PostService {
 
   List<PostDto> findAllPosts();
+  List<PostDto> findPostsByUser();
 
   void createPost(PostDto postDto);
 
